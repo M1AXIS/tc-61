@@ -36,6 +36,29 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 <style>
+	.responsive-zag {
+    /* Скрываем по умолчанию для мобильных */
+    display: none;
+  }
+
+  /* Показываем только при ≥1000px */
+  @media (min-width: 450px) {
+    .responsive-zag {
+      display: block; /* или flex/grid/inline-block */
+    }
+  }
+ .responsive-zag1 {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  @media (max-width: 449px) {
+    .responsive-zag1 {
+      display: block;
+      opacity: 1;
+    }
+  }
   .responsive-element {
     /* Скрываем по умолчанию для мобильных */
     display: none;
@@ -97,7 +120,8 @@
         <div class="container">
           <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
             <div class="col-lg-6 text-center">
-				<h1 style="white-space: nowrap;">«Строим надёжно. Сдаём в срок.»</h1>
+				<h1 style="white-space: nowrap;" class="responsive-zag">«Строим надёжно. Сдаём в срок.»</h1>
+				<h1  class="responsive-zag1" style="font-size: 16px">«Строим надёжно. Сдаём в срок.»</h4>
               <h1>ООО "ЭКОСТРОЙ" — это команда профессионалов с многолетним опытом в строительстве и ремонте</h1>
               <p>Полный спектр строительных услуг в Санкт-Петербурге и Ленинградской области</p>
               <a href="#start" class="btn-get-started" id="start">Познакомимся!</a>
@@ -148,7 +172,8 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>ООО "ЭКОСТРОЙ"</h2>
+		<h2 class="responsive-zag">ООО "ЭКОСТРОЙ"</h2>
+        <h2 class="responsive-zag1" style="font-size: 20px">ООО "ЭКОСТРОЙ"</h2>
         <p>Профессионально решаем задачи любой сложности в ключевых направлениях:</p>
       </div><!-- End Section Title -->
 
@@ -337,7 +362,8 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Портфолио проектов</h2>
+		<h2 class="responsive-zag" style="font-size: 20px">Портфолио проектов</h2>
+        <h2 class="responsive-zag1" style="font-size: 20px">Портфолио проектов</h2>
         <p>Наша гордость: объекты, которые говорят за нас</p>
       </div><!-- End Section Title -->
 
@@ -361,7 +387,7 @@
                 <div class="portfolio-info">
                   <h4>2025г.</h4>
                   <p>Монтаж опалубки и армирование</p>
-                  <a href="assets/img/projects/remodeling-1.jpg" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="assets/img/projects/remodeling-1.jpg" title="Монтаж опалубки и армирование" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -371,8 +397,8 @@
                 <img src="assets/img/projects/construction-1.jpg" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4>2025г.</h4>
-                  <p>Электромонтажжные работы</p>
-                  <a href="assets/img/projects/construction-1.jpg" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <p>Электромонтажные работы</p>
+                  <a href="assets/img/projects/construction-1.jpg" title="Электромонтажные работы" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
@@ -384,7 +410,7 @@
                 <div class="portfolio-info">
                   <h4>2025г.</h4>
                   <p>Отделочные работы</p>
-                  <a href="assets/img/projects/repairs-1.jpg" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="assets/img/projects/repairs-1.jpg" title="Отделочные работы" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
@@ -418,7 +444,7 @@
                 <img src="assets/img/projects/construction-2.jpg" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4>2025г.</h4>
-                  <p>Электромонтажжные работы</p>
+                  <p>Электромонтажные работы</p>
                   <a href="assets/img/projects/construction-2.jpg" title="Product 2" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
@@ -465,7 +491,7 @@
                 <img src="assets/img/projects/construction-3.jpg" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4>2025г.</h4>
-                  <p>Электромонтажжные работы</p>
+                  <p>Электромонтажные работы</p>
                   <a href="assets/img/projects/construction-3.jpg" title="Product 3" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
@@ -590,7 +616,7 @@
                   </div>
                   <p>
                     <i class="bi bi-quote quote-icon-left"></i>
-                    <span>Делали гидроизоляцию фундамента в нашем коттедже. Учитывая высокий УГВ в Ленобласти, это было критично. Ребята предложили комбинированное решение с дренажной системой. Прошло 2 года - подвал полностью сухой даже в паводок. Отличная работа!</span>
+                    <span>Делали гидроизоляцию фундамента в нашем коттедже. Учитывая высокий УГВ в Ленобласти, это было критично. Ребята предложили комбинированное решение с дренажной системой. Прошло 2 месяца - подвал полностью сухой даже в паводок. Отличная работа!</span>
                     <i class="bi bi-quote quote-icon-right"></i>
                   </p>
                 </div>
