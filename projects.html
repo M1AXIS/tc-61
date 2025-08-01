@@ -36,7 +36,31 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
+<style>
+	.responsive-zag {
+    /* Скрываем по умолчанию для мобильных */
+    display: none;
+  }
 
+  /* Показываем только при ≥1000px */
+  @media (min-width: 450px) {
+    .responsive-zag {
+      display: block; /* или flex/grid/inline-block */
+    }
+  }
+ .responsive-zag1 {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  @media (max-width: 449px) {
+    .responsive-zag1 {
+      display: block;
+      opacity: 1;
+    }
+  }
+	</style>
 <body class="projects-page">
 
   <header id="header" class="header d-flex align-items-center fixed-top">
@@ -80,7 +104,8 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Портфолио проектов</h2>
+		<h2 class="responsive-zag">Портфолио проектов</h2>
+        <h2 class="responsive-zag1" style="font-size: 19px">Портфолио проектов</h2>
         <p>Наша гордость: объекты, которые говорят за нас</p>
       </div><!-- End Section Title -->
 
