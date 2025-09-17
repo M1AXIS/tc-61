@@ -35,33 +35,164 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-</head>
 <style>
-	.responsive-zag {
+  .responsive-element {
     /* Скрываем по умолчанию для мобильных */
     display: none;
   }
 
   /* Показываем только при ≥1000px */
-  @media (min-width: 450px) {
-    .responsive-zag {
+  @media (min-width: 1000px) {
+    .responsive-element {
       display: block; /* или flex/grid/inline-block */
     }
   }
- .responsive-zag1 {
+ .responsive-element1 {
     display: none;
     opacity: 0;
     transition: opacity 0.5s ease;
   }
 
-  @media (max-width: 449px) {
-    .responsive-zag1 {
+  @media (max-width: 999px) {
+    .responsive-element1 {
       display: block;
       opacity: 1;
     }
   }
+	
+	.finishing-table {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  margin: 20px 0;
+}
+
+.table-row {
+  display: flex;
+  border-bottom: 1px solid #eee;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-cell {
+  flex: 1;
+  padding: 15px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid #eee;
+  background-color: #fff;
+}
+
+.table-cell:last-child {
+  border-right: none;
+}
+
+/* Стили для заголовка */
+.header .table-cell {
+  font-weight: 700;
+  background-color: #f8f9fa;
+  color: #333;
+  font-size: 1.1em;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .table-row {
+    flex-direction: column;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .table-cell {
+    border-right: none;
+    border-bottom: 1px solid #eee;
+    min-height: auto;
+    padding: 12px 15px;
+  }
+  
+  .table-cell:last-child {
+    border-bottom: none;
+  }
+  
+  .header .table-cell {
+    display: none;
+  }
+  
+  .table-row:before {
+    content: attr(data-title);
+    display: block;
+    font-weight: 700;
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+  }
+  
+  /* Добавляем названия колонок для мобилок */
+  .table-row:nth-child(2)::before { content: "Черновая отделка"; }
+  .table-row:nth-child(3)::before { content: "Чистовая отделка"; }
+  .table-row:nth-child(4)::before { content: "Спецпокрытия"; }
+  .table-row:nth-child(5)::before { content: "Черновая отделка"; }
+  .table-row:nth-child(6)::before { content: "Чистовая отделка"; }
+  .table-row:nth-child(7)::before { content: "Спецпокрытия"; }
+}
+	
 	</style>
-<body class="projects-page">
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Функция для прокрутки к якорю
+  const scrollToAnchor = () => {
+    const hash = window.location.hash.substr(1);
+    if (!hash) return;
+    
+    const [tabId, anchorId] = hash.split('__');
+    if (!anchorId) return;
+    
+    setTimeout(() => {
+      const anchorElement = document.getElementById(anchorId);
+      if (anchorElement) {
+        anchorElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }, 0); // Увеличиваем задержку
+  };
+
+  // Обработка открытия вкладки
+  const hash = window.location.hash.substr(1);
+  if (hash) {
+    const [tabId, anchorId] = hash.split('__');
+    const fullTabId = `#${tabId}`;
+    
+    setTimeout(() => {
+      const tabTrigger = document.querySelector(`[data-bs-target="${fullTabId}"]`);
+      if (tabTrigger) {
+        // Открываем вкладку
+        const tab = new bootstrap.Tab(tabTrigger);
+        tab.show();
+        
+        // Слушаем событие завершения переключения вкладок
+        document.querySelector(tabTrigger.dataset.bsTarget)
+          .addEventListener('shown.bs.tab', scrollToAnchor);
+        
+        // Дублирующий механизм на случай если событие не сработает
+        setTimeout(scrollToAnchor, 100);
+      }
+    }, 0);
+  }
+});
+</script>
+	</head>
+
+<body class="contact-page">
 
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
@@ -91,7 +222,7 @@
     <!-- Page Title -->
     <div class="page-title dark-background" style="background-image: url(assets/img/page-title-bg.jpg);">
       <div class="container position-relative">
-        <h1>Проекты</h1>
+        <h1>Ключевые проекты</h1>
         <nav class="breadcrumbs">
           <ol>
             <li><a href="index.html">Главная</a></li>
@@ -100,180 +231,283 @@
         </nav>
       </div>
     </div><!-- End Page Title -->
-    <section id="projects" class="projects section">
+    
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-		<h2 class="responsive-zag">Портфолио проектов</h2>
-        <h2 class="responsive-zag1" style="font-size: 19px">Портфолио проектов</h2>
-        <p>Наша гордость: объекты, которые говорят за нас</p>
-      </div><!-- End Section Title -->
+
+	
+
+
+  
+
+    <!-- Features Section -->
+    <section id="features" class="features section">
 
       <div class="container">
 
-        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+        <ul class="nav nav-tabs row  g-2 d-flex" data-aos="fade-up" data-aos-delay="100" role="tablist">
 
-          <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-            <li data-filter="*" class="filter-active">Все</li>
-            <li data-filter=".filter-remodeling">Монтажные работы</li>
-            <li data-filter=".filter-construction">Электромонтажные работы</li>
-            <li data-filter=".filter-repairs">Отделочные работы</li>
-            <li data-filter=".filter-design">Сварочные работы</li>
-          </ul><!-- End Portfolio Filters -->
+          <li class="nav-item col-3" role="presentation">
+            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1" aria-selected="true" role="tab">
+              <h4 class="responsive-element">Небоскрёб «Лахта Центр»</h4>
+				<h4 class="responsive-element1" style="font-size: 10px">Небоскрёб «Лахта Центр»</h4>
+            </a>
+          </li><!-- End tab nav item -->
 
-          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+          <li class="nav-item col-3" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2" aria-selected="false" tabindex="-1" role="tab">
+              <h4 class="responsive-element">Дворец танца Бориса Эйфмана</h4>
+				<h4 class="responsive-element1" style="font-size: 10px">Дворец танца Бориса Эйфмана</h4>
+            </a><!-- End tab nav item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-remodeling">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/projects/remodeling-1.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>2025г.</h4>
-                  <p>Монтаж опалубки и армирование</p>
-                  <a href="assets/img/projects/remodeling-1.jpg" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-					<a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
+          </li>
+          <li class="nav-item col-3" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3" aria-selected="false" tabindex="-1" role="tab">
+              <h4 class="responsive-element">Здание судебного департамента РФ</h4>
+				<h4 class="responsive-element1" style="font-size: 10px">Здание судебного департамента РФ</h4>
+            </a>
+          </li><!-- End tab nav item -->
+
+          <li class="nav-item col-3" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-4" aria-selected="false" tabindex="-1" role="tab">
+              <h4 class="responsive-element">Жилой комплекс на 600 квартир</h4>
+				<h4 class="responsive-element1" style="font-size: 10px">Жилой комплекс на 600 квартир</h4>
+            </a>
+          </li><!-- End tab nav item -->
+			
+
+        </ul>
+
+        <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="tab-pane fade active show" id="features-tab-1" role="tabpanel">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                <h3 id='gydro'>Ключевой проект: участие в строительстве небоскрёба «Лахта Центр»</h3>
+                <p class="fst-italic">
+                  Выполненные нами работы:
+                </p>
+                <ul>
+                  <li><i class="bi bi-check2-all"></i> <span>Монтаж инновационной самоподъёмной опалубки для высокоточного бетонирования ядра жёсткости небоскрёба</span></li>
+                  <li><i class="bi bi-check2-all"></i> <span>Непрерывное бетонирование монолитных конструкций (стен, перекрытий, колонн) с соблюдением жёстких допусков (отклонения не более ±10 мм)</span></li>
+                  <li><i class="bi bi-check2-all"></i> <span>Устройство сложного арматурного каркаса с применением арматуры классов А500С и А600С</span></li>
+                </ul>
+				  <script>
+// Ждем загрузки DOM
+document.addEventListener('DOMContentLoaded', function() {
+    const button = document.querySelector('.works_tanes');
+    
+    button.onmouseover = function() {
+        this.style.background = 'linear-gradient(135deg, #fe9b27, #fe9b27)';
+        this.style.transform = 'translateY(-2px)';
+        this.style.boxShadow = '0 6px 20px rgba(229, 62, 62, 0.4)';
+    }
+    
+    button.onmouseout = function() {
+        this.style.background = 'linear-gradient(135deg, #364d73, #364d73)';
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = '0 4px 14px rgba(229, 62, 62, 0.3)';
+    }
+});
+</script>
+		
+	<a href="lahta-details.html" class="works_tanes" style="display: inline-flex;
+                       align-items: center;
+						margin-top: 8px;
+											 max-width: 380px;
+                       background: linear-gradient(135deg, #364d73, #364d73);
+                       color: white;
+                       padding: 14px 28px;
+                       border-radius: 10px;
+                       text-decoration: none;
+                       font-family: 'Segoe UI', sans-serif;
+                       font-weight: 600;
+                       font-size: 16px;
+                       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                       box-shadow: 0 4px 14px rgba(229, 62, 62, 0.3);
+                       border: 2px solid transparent;
+                       gap: 12px;">Подробнее о проекте</a>
               </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-construction">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/projects/construction-1.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>2025г.</h4>
-                  <p>Электромонтажжные работы</p>
-                  <a href="assets/img/projects/construction-1.jpg" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="lahta_center/lahta.jpg" alt="" class="img-fluid">
               </div>
-            </div><!-- End Portfolio Item -->
+            </div>
+          </div><!-- End tab content item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-repairs">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/projects/repairs-1.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>2025г.</h4>
-                  <p>Отделочные работы</p>
-                  <a href="assets/img/projects/repairs-1.jpg" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
+          <div class="tab-pane fade" id="features-tab-2" role="tabpanel">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                <h3 id='gydro'>С 2022 года наша команда принимает непосредственное участие в реализации одного из самых значимых культурных проектов Санкт-Петербурга — строительстве Академии танца.</h3>
+                <p class="fst-italic">
+                  Выполняемые нами работы:
+                </p>
+                <ul>
+                  <li><i class="bi bi-check2-all"></i> <span>Полный цикл монолитных работ: устройство фундаментной плиты, возведение стен, колонн и междуэтажных перекрытий</span></li>
+                  <li><i class="bi bi-check2-all"></i> <span>Монтаж сложной инженерной опалубки для создания уникальных архитектурных форм и помещений с особыми требованиями (зрительные залы, репетиционные студии)</span></li>
+                  <li><i class="bi bi-check2-all"></i> <span>Устройство арматурных каркасов повышенной сложности с соблюдением расчётных нагрузок</span></li>
+                </ul>
+				  <script>
+// Ждем загрузки DOM
+document.addEventListener('DOMContentLoaded', function() {
+    const button = document.querySelector('.works');
+    
+    button.onmouseover = function() {
+        this.style.background = 'linear-gradient(135deg, #fe9b27, #fe9b27)';
+        this.style.transform = 'translateY(-2px)';
+        this.style.boxShadow = '0 6px 20px rgba(229, 62, 62, 0.4)';
+    }
+    
+    button.onmouseout = function() {
+        this.style.background = 'linear-gradient(135deg, #364d73, #364d73)';
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = '0 4px 14px rgba(229, 62, 62, 0.3)';
+    }
+});
+</script>
+		
+	<a href="#1" class="works" style="display: inline-flex;
+                       align-items: center;
+						margin-top: 8px;
+											 max-width: 380px;
+                       background: linear-gradient(135deg, #364d73, #364d73);
+                       color: white;
+                       padding: 14px 28px;
+                       border-radius: 10px;
+                       text-decoration: none;
+                       font-family: 'Segoe UI', sans-serif;
+                       font-weight: 600;
+                       font-size: 16px;
+                       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                       box-shadow: 0 4px 14px rgba(229, 62, 62, 0.3);
+                       border: 2px solid transparent;
+                       gap: 12px;">Подробнее о проекте</a>
               </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-design">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/projects/design-1.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>2025г.</h4>
-                  <p>Сварочные работы на обьекте</p>
-                  <a href="assets/img/projects/design-1.jpg" title="Branding 1" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="dvores_tansev/dvores_tansa.jpg" alt="" class="img-fluid">
               </div>
-            </div><!-- End Portfolio Item -->
+            </div>
+			  
+      		</div>
+          
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-remodeling">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/projects/remodeling-2.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>2025г.</h4>
-                  <p>Монтаж опалубки и армирование</p>
-                  <a href="assets/img/projects/remodeling-2.jpg" title="App 2" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                </div>
+          <div class="tab-pane fade" id="features-tab-3" role="tabpanel">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                <h3 id='gydro'>С 2022 года наша компания принимает непосредственное участие в возведении нового административно-общественного комплекса для Судебного департамента РФ.</h3>
+                <p class="fst-italic">
+                  Ключевые выполняемые задачи:
+                </p>
+                <ul>
+                  <li><i class="bi bi-check2-all"></i> <span>Полный цикл монолитных работ: устройство фундамента, возведение несущих стен, колонн и междуэтажных перекрытий</span></li>
+                  <li><i class="bi bi-check2-all"></i> <span>Монтаж сложной инженерной опалубки для создания помещений с особыми требованиями по нагрузкам и планировке (залы судебных заседаний, архивные помещения)</span></li>
+                  <li><i class="bi bi-check2-all"></i> <span>Устройство усиленных арматурных каркасов для конструкций, рассчитанных на повышенные нагрузки и обеспечивающих безопасность объекта</span></li>
+					<li><i class="bi bi-check2-all"></i> <span>Бетонирование конструкций с непрерывным циклом и строгим лабораторным контролем качества каждой партии бетона</span></li>
+                  <li><i class="bi bi-check2-all"></i> <span>Строгое соблюдение норм ФСБ и МЧС на всех этапах строительства, предусмотренных для объектов судебной инфраструктуры</span></li>
+                </ul>
+				  <script>
+// Ждем загрузки DOM
+document.addEventListener('DOMContentLoaded', function() {
+    const button = document.querySelector('.works3');
+    
+    button.onmouseover = function() {
+        this.style.background = 'linear-gradient(135deg, #fe9b27, #fe9b27)';
+        this.style.transform = 'translateY(-2px)';
+        this.style.boxShadow = '0 6px 20px rgba(229, 62, 62, 0.4)';
+    }
+    
+    button.onmouseout = function() {
+        this.style.background = 'linear-gradient(135deg, #364d73, #364d73)';
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = '0 4px 14px rgba(229, 62, 62, 0.3)';
+    }
+});
+</script>
+		
+	<a href="#1" class="works3" style="display: inline-flex;
+                       align-items: center;
+						margin-top: 8px;
+											 max-width: 380px;
+                       background: linear-gradient(135deg, #364d73, #364d73);
+                       color: white;
+                       padding: 14px 28px;
+                       border-radius: 10px;
+                       text-decoration: none;
+                       font-family: 'Segoe UI', sans-serif;
+                       font-weight: 600;
+                       font-size: 16px;
+                       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                       box-shadow: 0 4px 14px rgba(229, 62, 62, 0.3);
+                       border: 2px solid transparent;
+                       gap: 12px;">Подробнее о проекте</a>
               </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-construction">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/projects/construction-2.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>2025г.</h4>
-                  <p>Электромонтажжные работы</p>
-                  <a href="assets/img/projects/construction-2.jpg" title="Product 2" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="syd_departament/deportament_compleks.jpg" alt="" class="img-fluid">
               </div>
-            </div><!-- End Portfolio Item -->
+            </div>
+          </div><!-- End tab content item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-repairs">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/projects/repairs-2.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>2025г.</h4>
-                  <p>Отделочные работы</p>
-                  <a href="assets/img/projects/repairs-2.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
+          <div class="tab-pane fade" id="features-tab-4" role="tabpanel">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                <h3 id='gydro'>С 2022 года наша компания реализует масштабный проект по возведению современного жилого комплекса на 600 квартир в Санкт-Петербурге. Этот объект предназначен для обеспечения жильём судей и сотрудников судебной системы, что предъявляет к качеству и надёжности строительства исключительные требования.</h3>
+                <p class="fst-italic">
+                  Ключевые выполняемые задачи:
+                </p>
+                <ul>
+                  <li><i class="bi bi-check2-all"></i> <span>Полный цикл монолитных работ: Устройство свайного поля, фундаментной плиты, возведение несущего каркаса зданий (стен, колонн, междуэтажных перекрытий)</span></li>
+                  <li><i class="bi bi-check2-all"></i> <span>Организация поточного метода строительства: Одновременное ведение работ на нескольких секциях комплекса для строгого соблюдения сроков</span></li>
+                  <li><i class="bi bi-check2-all"></i> <span>Монтаж крупнощитовой и тоннельной опалубки для скоростного и высокоточного бетонирования типовых этажей</span></li>
+					<li><i class="bi bi-check2-all"></i> <span>Устройство арматурных каркасов с применением предварительно собранных пространственных блоков для повышения скорости и качества работ</span></li>
+                  <li><i class="bi bi-check2-all"></i> <span>Контроль качества на всех этапах: От приемки бетонной смеси до контроля прочности готовых конструкций</span></li>
+                </ul>
+				  <script>
+// Ждем загрузки DOM
+document.addEventListener('DOMContentLoaded', function() {
+    const button = document.querySelector('.works4');
+    
+    button.onmouseover = function() {
+        this.style.background = 'linear-gradient(135deg, #fe9b27, #fe9b27)';
+        this.style.transform = 'translateY(-2px)';
+        this.style.boxShadow = '0 6px 20px rgba(229, 62, 62, 0.4)';
+    }
+    
+    button.onmouseout = function() {
+        this.style.background = 'linear-gradient(135deg, #364d73, #364d73)';
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = '0 4px 14px rgba(229, 62, 62, 0.3)';
+    }
+});
+</script>
+		
+	<a href="#1" class="works4" style="display: inline-flex;
+                       align-items: center;
+						margin-top: 8px;
+											 max-width: 380px;
+                       background: linear-gradient(135deg, #364d73, #364d73);
+                       color: white;
+                       padding: 14px 28px;
+                       border-radius: 10px;
+                       text-decoration: none;
+                       font-family: 'Segoe UI', sans-serif;
+                       font-weight: 600;
+                       font-size: 16px;
+                       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                       box-shadow: 0 4px 14px rgba(229, 62, 62, 0.3);
+                       border: 2px solid transparent;
+                       gap: 12px;">Подробнее о проекте</a>
               </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-design">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/projects/design-2.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                   <h4>2025г.</h4>
-                  <p>Сварочные работы на обьекте</p>
-                  <a href="assets/img/projects/design-2.jpg" title="Branding 2" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-remodeling">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/projects/remodeling-3.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>2025г.</h4>
-                  <p>Монтаж опалубки и армирование</p>
-                  <a href="assets/img/projects/remodeling-3.jpg" title="App 3" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-construction">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/projects/construction-3.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>2025г.</h4>
-                  <p>Электромонтажжные работы</p>
-                  <a href="assets/img/projects/construction-3.jpg" title="Product 3" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-repairs">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/projects/repairs-3.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>2025г.</h4>
-                  <p>Отделочные работы</p>
-                  <a href="assets/img/projects/repairs-3.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-design">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/projects/design-3.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                   <h4>2025г.</h4>
-                  <p>Сварочные работы на обьекте</p>
-                  <a href="assets/img/projects/design-3.jpg" title="Branding 3" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-          </div><!-- End Portfolio Container -->
+				<h2 class="responsive-element1">Лестничные марши, дорожки, отмостки, площадки</h2>
+					<div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="syd_departament/deportament_compleks.jpg" alt="" class="img-fluid">
+              		</div>
+      		</div>
+            </div>
+          </div><!-- End tab content item -->
 
         </div>
 
-      </div>
+    </section><!-- /Features Section -->
 
-    </section><!-- /Projects Section -->
-
-  </main>
+    </main>
 
   <footer id="footer" class="footer dark-background">
 
